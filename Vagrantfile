@@ -24,9 +24,10 @@ h.vm.network "private_network", ip: "192.168.135.101"
     end
   end
 
-  config.vm.define "mysql1" do |h|
-h.vm.network "private_network", ip: "192.168.135.111"
-    h.vm.hostname = "mysql1"
+for i in 1..3 do
+  config.vm.define "mysql#{i}" do |h|
+h.vm.network "private_network", ip: "192.168.135.11#{i}"
+    h.vm.hostname = "mysql#{i}"
     
     h.vm.provider "virtualbox" do |vb|
      vb.memory = "512"
@@ -34,23 +35,6 @@ h.vm.network "private_network", ip: "192.168.135.111"
     end
   end
 
-  config.vm.define "mysql2" do |h|
-h.vm.network "private_network", ip: "192.168.135.112"
-    h.vm.hostname = "mysql2"
+end
 
-    h.vm.provider "virtualbox" do |vb|
-     vb.memory = "512"
-     vb.cpus = 1
-    end
-  end
-
-  config.vm.define "mysql3" do |h|
-h.vm.network "private_network", ip: "192.168.135.121"
-    h.vm.hostname = "mysql3"
-    
-    h.vm.provider "virtualbox" do |vb|
-     vb.memory = "512"
-     vb.cpus = 1
-    end
-  end
 end
