@@ -13,6 +13,7 @@
 Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/trusty64"
+  config.vm.box_check_update = false
 
   config.vm.define "app" do |h|
 h.vm.network "private_network", ip: "192.168.135.101"
@@ -24,17 +25,34 @@ h.vm.network "private_network", ip: "192.168.135.101"
     end
   end
 
-for i in 1..3 do
-  config.vm.define "mysql#{i}" do |h|
-h.vm.network "private_network", ip: "192.168.135.11#{i}"
-    h.vm.hostname = "mysql#{i}"
-    
+  config.vm.define "mysql1" do |h|
+h.vm.network "private_network", ip: "192.168.135.111"
+    h.vm.hostname = "mysql1"
+
     h.vm.provider "virtualbox" do |vb|
      vb.memory = "512"
      vb.cpus = 1
     end
   end
 
-end
+  config.vm.define "mysql2" do |h|
+h.vm.network "private_network", ip: "192.168.135.112"
+    h.vm.hostname = "mysql2"
+
+    h.vm.provider "virtualbox" do |vb|
+     vb.memory = "512"
+     vb.cpus = 1
+    end
+  end
+
+  config.vm.define "mysql3" do |h|
+h.vm.network "private_network", ip: "192.168.135.113"
+    h.vm.hostname = "mysql3"
+
+    h.vm.provider "virtualbox" do |vb|
+     vb.memory = "512"
+     vb.cpus = 1
+    end
+  end
 
 end
