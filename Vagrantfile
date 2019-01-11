@@ -19,6 +19,11 @@ Vagrant.configure(2) do |config|
 h.vm.network "private_network", ip: "192.168.135.101"
     h.vm.hostname = "app"
 
+   h.vm.provision "shell" do |s|
+    s.path = "bootstrap.sh"
+    s.privileged = true
+  end
+
     h.vm.provider "virtualbox" do |vb|
      vb.memory = "512"
      vb.cpus = 1
