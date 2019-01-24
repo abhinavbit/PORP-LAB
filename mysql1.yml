@@ -20,8 +20,17 @@
 
      - name: Install Percona Server
        apt:
-          name: percona-server-server-5.7
-          state: present
+         name: "{{ item }}" 
+         state: present
+         update_cache: yes
+         force: yes 
+       vars:
+         item:
+            - percona-server-common-5.7
+            - percona-server-client-5.7
+            - percona-server-server-5.7
+       environment:
+          DEBIAN_FRONTEND: noninteractive
        notify:
           - start mysql
 
