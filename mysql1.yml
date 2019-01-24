@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: True
+
+  tasks:
+     - name: Install Percona Repo
+       apt:
+          name: https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
+          state: present
+
+     - name: Install Percona Server
+       apt:
+          name: percona-server-server-5.7
+          state: present
+       notify:
+          - start mysql
+
+  handlers:
+     - name: start mysql
+       service:
+             name: mysql
+             state: restarted
+             enabled: yes

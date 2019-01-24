@@ -38,6 +38,12 @@ h.vm.network "private_network", ip: "192.168.135.111"
     s.path = "mysql1.sh"
     s.privileged = true
   end
+    h.vm.provision "file", source: "mysql1.yml", destination: "/vagrant/mysql1.yml"
+    h.vm.provision "ansible_local" do |ansible|
+    ansible.compatibility_mode = "auto"
+    ansible.playbook = "mysql1.yml"
+    ansible.compatibility_mode = "2.0"
+  end
 
     h.vm.provider "virtualbox" do |vb|
      vb.memory = "512"
