@@ -6,11 +6,12 @@
      - name: update apt cache
        apt:
           update_cache: yes
+          cache_valid_time: 86400
 
      - name: Add Percona apt signing key
        apt_key: 
           keyserver: keys.gnupg.net 
-          id: 1C4CBDCDCD2EFD2A 
+          id: 8507EFA5 
           state: present
 
      - name: Install/Add Percona Repo
