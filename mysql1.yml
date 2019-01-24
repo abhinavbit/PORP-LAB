@@ -3,6 +3,10 @@
   become: True
 
   tasks:
+     - name: update apt cache
+       apt:
+          update_cache: yes
+
      - name: Add Percona apt signing key
        apt_key: 
           keyserver: keys.gnupg.net 
@@ -13,10 +17,6 @@
        apt_repository: 
           repo: 'deb https://repo.percona.com/apt trusty main'
           state: present
-
-     - name: update apt cache
-       apt:
-          update_cache: yes
 
      - name: Install Percona Server
        apt:
