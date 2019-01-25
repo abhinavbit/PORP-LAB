@@ -3,17 +3,18 @@
   become: True
 
   tasks:
-     - name: Add Percona apt signing key
-       apt_key: 
-          keyserver: keys.gnupg.net 
-          id: 8507EFA5 
-          state: present
+     - name: Download Percona Repo
+       get_url: 
+          url: 'https://repo.percona.com/apt/percona-release_latest.xenial_all.deb'
+          dest: '/tmp/percona-release_latest.xenial_all.deb'
 
-     - name: Install/Add Percona Repo
-       apt_repository: 
-          repo: 'deb https://repo.percona.com/apt trusty main'
+     - name: Install Percona Repo
+       apt:
+          deb: '/tmp/percona-release_latest.xenial_all.deb'
+
+     - name: update apt chache
+       apt:   
           update_cache: yes
-          state: present
 
      - name: Install Percona Server
        apt:

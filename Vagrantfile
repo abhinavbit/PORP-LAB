@@ -3,6 +3,12 @@ Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.box_check_update = false
 
+  config.vm.provider "virtualbox" do |vb|
+     vb.memory = "512"
+     vb.cpus = 1
+     vb.linked_clone = true
+    end
+
   config.vm.define "app" do |h|
 h.vm.network "private_network", ip: "192.168.135.101"
     h.vm.hostname = "app"
@@ -18,10 +24,10 @@ h.vm.network "private_network", ip: "192.168.135.101"
     ansible.compatibility_mode = "2.0"
   end
 
-    h.vm.provider "virtualbox" do |vb|
-     vb.memory = "512"
-     vb.cpus = 1
-    end
+#    h.vm.provider "virtualbox" do |vb|
+#     vb.memory = "512"
+#     vb.cpus = 1
+#    end
   end
 
   config.vm.define "mysql1" do |h|
@@ -39,10 +45,10 @@ h.vm.network "private_network", ip: "192.168.135.111"
     ansible.compatibility_mode = "2.0"
   end
 
-    h.vm.provider "virtualbox" do |vb|
-     vb.memory = "512"
-     vb.cpus = 1
-    end
+#    h.vm.provider "virtualbox" do |vb|
+#     vb.memory = "512"
+#     vb.cpus = 1
+#    end
   end
 
   config.vm.define "mysql2" do |h|
@@ -60,10 +66,10 @@ h.vm.network "private_network", ip: "192.168.135.112"
     ansible.compatibility_mode = "2.0"
   end
 
-    h.vm.provider "virtualbox" do |vb|
-     vb.memory = "512"
-     vb.cpus = 1
-    end
+#    h.vm.provider "virtualbox" do |vb|
+#     vb.memory = "512"
+#     vb.cpus = 1
+#    end
   end
 
   config.vm.define "mysql3" do |h|
@@ -81,10 +87,10 @@ h.vm.network "private_network", ip: "192.168.135.113"
     ansible.compatibility_mode = "2.0"
   end
 
-    h.vm.provider "virtualbox" do |vb|
-     vb.memory = "512"
-     vb.cpus = 1
-    end
+#    h.vm.provider "virtualbox" do |vb|
+#     vb.memory = "512"
+#     vb.cpus = 1
+#    end
   end
 
 end
