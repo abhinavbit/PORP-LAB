@@ -14,8 +14,6 @@
           repo: 'deb https://repo.percona.com/apt trusty main'
           update_cache: yes
           state: present
-       notify:
-          - update apt cache
 
      - name: Install Percona Server
        apt:
@@ -39,6 +37,3 @@
              state: restarted
              enabled: yes
 
-     - name: update apt cache
-       apt:
-          update_cache: yes
