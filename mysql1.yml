@@ -3,11 +3,6 @@
   become: True
 
   tasks:
-     - name: update apt cache
-       apt:
-          update_cache: yes
-          cache_valid_time: 86400
-
      - name: Add Percona apt signing key
        apt_key: 
           keyserver: keys.gnupg.net 
@@ -17,13 +12,15 @@
      - name: Install/Add Percona Repo
        apt_repository: 
           repo: 'deb https://repo.percona.com/apt trusty main'
+          update_cache: yes
           state: present
+       notify:
+          - update apt cache
 
      - name: Install Percona Server
        apt:
          name: "{{ item }}" 
          state: present
-         update_cache: yes
          force: yes 
        vars:
          item:
@@ -41,3 +38,7 @@
              name: mysql
              state: restarted
              enabled: yes
+
+     - name: update apt cache
+       apt:
+          update_cache: yes
