@@ -99,6 +99,11 @@
          priv: "*.*:ALL PRIVILEGES"
          state: present
 
+     - name: Orchestrator configuration 
+       template: 
+         src: orchestrator.conf.json.j2
+         dest: /usr/local/orchestrator/orchestrator.conf.json
+
   handlers:
      - name: start mysql
        service:
