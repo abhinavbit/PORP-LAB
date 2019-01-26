@@ -55,6 +55,13 @@
        notify:
          - start proxysql
 
+     - name: configure proxysql 
+       copy: 
+         src: init/proxysql_init.sql 
+         dest: /tmp/proxysql_init.sql
+
+     - shell: mysql -u admin -padmin -h 127.0.0.1 -P6032 < /tmp/proxysql_init.sql
+         
   handlers:
      - name: start mysql
        service:
@@ -67,5 +74,4 @@
              name: proxysql 
              state: restarted 
              enabled: yes
-
 

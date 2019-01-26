@@ -69,4 +69,10 @@
          priv: "*.*:REPLICATION CLIENT,REPLICATION SLAVE"
          state: present
 
-
+     - name : Create proxysql user
+       mysql_user:
+         name: proxysql
+         password: proxysql
+         host: '%'
+         priv: "*.*:ALL PRIVILEGES"
+         state: present
