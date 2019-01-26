@@ -31,6 +31,12 @@
        notify:
           - start mysql
 
+     - name: Install Percona Toolkit
+       apt:
+         name: percona-toolkit
+         state: present
+         force: yes
+
      - name: Install ProxySQL 
        apt: 
          name: proxysql

@@ -31,6 +31,12 @@
        notify:
           - start mysql
 
+     - name: Install Percona Toolkit
+       apt:
+         name: percona-toolkit
+         state: present
+         force: yes
+
   handlers:
      - name: start mysql
        service:
