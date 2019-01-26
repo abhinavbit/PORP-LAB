@@ -31,10 +31,25 @@
        notify:
           - start mysql
 
+     - name: Install ProxySQL 
+       apt: 
+         name: proxysql
+         state: present
+         force: yes
+       notify:
+         - start proxysql
+
   handlers:
      - name: start mysql
        service:
              name: mysql
              state: restarted
              enabled: yes
+
+     - name: start proxysql
+       service: 
+             name: proxysql 
+             state: restarted 
+             enabled: yes
+
 
