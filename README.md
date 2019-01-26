@@ -8,6 +8,10 @@ Version 5.2.22 or Later
 ```bash
 Version 2.2.2 or Later
 ```
+### Install Vagrant plugin hostmanager
+```bash
+vagrant plugin install vagrant-hostmanager
+```
 ### Create Lab
 ```bash
 vagrant up --provision 
