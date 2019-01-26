@@ -19,15 +19,11 @@ h.vm.network "private_network", ip: "192.168.135.101"
   end
     h.vm.provision "file", source: "app.yml", destination: "/vagrant/app.yml"
     h.vm.provision "ansible_local" do |ansible|
-    ansible.compatibility_mode = "auto"
+    ansible.install_mode = "pip"
     ansible.playbook = "app.yml"
     ansible.compatibility_mode = "2.0"
   end
 
-#    h.vm.provider "virtualbox" do |vb|
-#     vb.memory = "512"
-#     vb.cpus = 1
-#    end
   end
 
   config.vm.define "mysql1" do |h|
@@ -40,15 +36,11 @@ h.vm.network "private_network", ip: "192.168.135.111"
   end
     h.vm.provision "file", source: "mysql1.yml", destination: "/vagrant/mysql1.yml"
     h.vm.provision "ansible_local" do |ansible|
-    ansible.compatibility_mode = "auto"
+    ansible.install_mode = "pip"
     ansible.playbook = "mysql1.yml"
     ansible.compatibility_mode = "2.0"
   end
 
-#    h.vm.provider "virtualbox" do |vb|
-#     vb.memory = "512"
-#     vb.cpus = 1
-#    end
   end
 
   config.vm.define "mysql2" do |h|
@@ -61,15 +53,11 @@ h.vm.network "private_network", ip: "192.168.135.112"
   end
     h.vm.provision "file", source: "mysql2.yml", destination: "/vagrant/mysql2.yml"
     h.vm.provision "ansible_local" do |ansible|
-    ansible.compatibility_mode = "auto"
+    ansible.install_mode = "pip"
     ansible.playbook = "mysql2.yml"
     ansible.compatibility_mode = "2.0"
   end
 
-#    h.vm.provider "virtualbox" do |vb|
-#     vb.memory = "512"
-#     vb.cpus = 1
-#    end
   end
 
   config.vm.define "mysql3" do |h|
@@ -82,15 +70,11 @@ h.vm.network "private_network", ip: "192.168.135.113"
   end
     h.vm.provision "file", source: "mysql3.yml", destination: "/vagrant/mysql3.yml"
     h.vm.provision "ansible_local" do |ansible|
-    ansible.compatibility_mode = "auto"
+    ansible.install_mode = "pip"
     ansible.playbook = "mysql3.yml"
     ansible.compatibility_mode = "2.0"
   end
 
-#    h.vm.provider "virtualbox" do |vb|
-#     vb.memory = "512"
-#     vb.cpus = 1
-#    end
   end
 
 end
