@@ -12,6 +12,10 @@ Version 2.2.2 or Later
 ```bash
 vagrant plugin install vagrant-hostmanager
 ```
+### Clone the repo
+```bash
+
+```
 ### Create Lab
 ```bash
 vagrant up --provision 
