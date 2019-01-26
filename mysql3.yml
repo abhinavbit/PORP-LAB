@@ -28,32 +28,21 @@
             - percona-server-server-5.7
        environment:
           DEBIAN_FRONTEND: noninteractive
-       notify:
-          - start mysql
+
+     - name: configure my.cnf
+       template: 
+         src: mysql3.my.cnf.j2 
+         dest: /etc/mysql/my.cnf
+
+     - name: restart mysql
+       service:
+             name: mysql
+             state: restarted
+             enabled: yes
 
      - name: Install Percona Toolkit
        apt:
          name: percona-toolkit
          state: present
          force: yes
-
-     - name: Install dependency 
-       apt:
-         name: python2.7-mysqldb
-         state: present
-
-     - name : Create repl user 
-       mysql_user:
-         name: repl
-         password: repl
-         host: '%'
-         priv: "*.*:REPLICATION CLIENT,REPLICATION SLAVE"
-         state: present
-
-  handlers:
-     - name: start mysql
-       service:
-             name: mysql
-             state: restarted
-             enabled: yes
 

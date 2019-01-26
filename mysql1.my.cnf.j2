@@ -1,0 +1,8 @@
+[mysqld]
+server-id=1
+log-bin
+log-slave-updates
+binlog_format=MIXED
+
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/percona-server.conf.d/

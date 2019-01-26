@@ -34,10 +34,10 @@ h.vm.network "private_network", ip: "192.168.135.111"
     s.path = "db_init.sh"
     s.privileged = true
   end
-    h.vm.provision "file", source: "master.yml", destination: "/vagrant/master.yml"
+    h.vm.provision "file", source: "mysql1.yml", destination: "/vagrant/mysql1.yml"
     h.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"
-    ansible.playbook = "master.yml"
+    ansible.playbook = "mysql1.yml"
     ansible.compatibility_mode = "2.0"
   end
 
@@ -51,10 +51,10 @@ h.vm.network "private_network", ip: "192.168.135.112"
     s.path = "db_init.sh"
     s.privileged = true
   end
-    h.vm.provision "file", source: "slave.yml", destination: "/vagrant/slave.yml"
+    h.vm.provision "file", source: "mysql2.yml", destination: "/vagrant/mysql2.yml"
     h.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"
-    ansible.playbook = "slave.yml"
+    ansible.playbook = "mysql2.yml"
     ansible.compatibility_mode = "2.0"
   end
 
@@ -68,10 +68,10 @@ h.vm.network "private_network", ip: "192.168.135.113"
     s.path = "db_init.sh"
     s.privileged = true
   end
-    h.vm.provision "file", source: "slave.yml", destination: "/vagrant/slave.yml"
+    h.vm.provision "file", source: "mysql3.yml", destination: "/vagrant/mysql3.yml"
     h.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"
-    ansible.playbook = "slave.yml"
+    ansible.playbook = "mysql3.yml"
     ansible.compatibility_mode = "2.0"
   end
 
