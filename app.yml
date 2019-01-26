@@ -103,6 +103,8 @@
        template: 
          src: orchestrator.conf.json.j2
          dest: /usr/local/orchestrator/orchestrator.conf.json
+       notify: 
+         - start orchestrator 
 
   handlers:
      - name: start mysql
@@ -117,3 +119,8 @@
              state: restarted 
              enabled: yes
 
+     - name: start orchestrator 
+       service:
+             name: orchestrator
+             state: restarted
+             enabled: yes
