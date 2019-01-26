@@ -76,3 +76,11 @@
          host: '%'
          priv: "*.*:ALL PRIVILEGES"
          state: present
+
+     - name : Create orchestrator MySQLTopologyUser
+       mysql_user:
+         name: orchestrator
+         password: 0rcTopology
+         host: '%'
+         priv: "*.*:SUPER,PROCESS,REPLICATION SLAVE,RELOAD,SELECT"
+         state: present
