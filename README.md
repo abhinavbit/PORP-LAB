@@ -1,9 +1,13 @@
 # PORP LAB : ProxySQL/Orchestrator/Replication/PMM
 
 ### Install VirtualBox
-
+```bash
+Version 5.2.22 or Later 
+```
 ### Install Vagrant
-
+```bash
+Version 2.2.2 or Later
+```
 ### Create Lab
 ```bash
 vagrant up --provision 
