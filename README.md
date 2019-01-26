@@ -5,9 +5,11 @@
 -- Install Vagrant
 
 -- Create Lab
+```bash
 vagrant up --provision 
-
+```
 -- Connect to each node
+```bash
 vagrant ssh app
 
 vagrant ssh mysql1
@@ -15,17 +17,21 @@ vagrant ssh mysql1
 vagrant ssh mysql2
 
 vagrant ssh mysql3
-
+```
 -- Verify Replication 
+```bash
 vagrrant ssh mysql2
 mysql -e"show slave status\G"
 
 vagrant ssh mysql3
 mysql -e"show slave status\G"
-
+```
 -- Verify ProxySQL 
+```bash
 vagrant ssh app
+
 service proxysql restart 
+
 mysql -u admin -padmin -h 127.0.0.1 -P6032 --prompt='ProxySQL> '
 
 ProxySQL> select * from runtime_mysql_servers;
@@ -59,3 +65,4 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 +------------+
 | mysql3     |
 +------------+
+```
