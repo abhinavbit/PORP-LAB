@@ -1,14 +1,14 @@
 # PORP LAB : ProxySQL/Orchestrator/Replication/PMM
 
--- Install VirtualBox
+### Install VirtualBox
 
--- Install Vagrant
+### Install Vagrant
 
--- Create Lab
+### Create Lab
 ```bash
 vagrant up --provision 
 ```
--- Connect to each node
+### Connect to each node
 ```bash
 vagrant ssh app
 
@@ -18,7 +18,7 @@ vagrant ssh mysql2
 
 vagrant ssh mysql3
 ```
--- Verify Replication 
+### Verify Replication 
 ```bash
 vagrrant ssh mysql2
 mysql -e"show slave status\G"
@@ -26,7 +26,7 @@ mysql -e"show slave status\G"
 vagrant ssh mysql3
 mysql -e"show slave status\G"
 ```
--- Verify ProxySQL 
+### Verify ProxySQL 
 ```bash
 vagrant ssh app
 
