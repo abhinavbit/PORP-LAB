@@ -14,7 +14,7 @@ h.vm.network "private_network", ip: "192.168.135.101"
     h.vm.hostname = "app"
 
    h.vm.provision "shell" do |s|
-    s.path = "app.sh"
+    s.path = "app_init.sh"
     s.privileged = true
   end
     h.vm.provision "file", source: "app.yml", destination: "/vagrant/app.yml"
@@ -31,13 +31,13 @@ h.vm.network "private_network", ip: "192.168.135.111"
     h.vm.hostname = "mysql1"
 
     h.vm.provision "shell" do |s|
-    s.path = "mysql1.sh"
+    s.path = "db_init.sh"
     s.privileged = true
   end
-    h.vm.provision "file", source: "mysql1.yml", destination: "/vagrant/mysql1.yml"
+    h.vm.provision "file", source: "master.yml", destination: "/vagrant/master.yml"
     h.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"
-    ansible.playbook = "mysql1.yml"
+    ansible.playbook = "master.yml"
     ansible.compatibility_mode = "2.0"
   end
 
@@ -48,13 +48,13 @@ h.vm.network "private_network", ip: "192.168.135.112"
     h.vm.hostname = "mysql2"
 
     h.vm.provision "shell" do |s|
-    s.path = "mysql2.sh"
+    s.path = "db_init.sh"
     s.privileged = true
   end
-    h.vm.provision "file", source: "mysql2.yml", destination: "/vagrant/mysql2.yml"
+    h.vm.provision "file", source: "slave.yml", destination: "/vagrant/slave.yml"
     h.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"
-    ansible.playbook = "mysql2.yml"
+    ansible.playbook = "slave.yml"
     ansible.compatibility_mode = "2.0"
   end
 
@@ -65,13 +65,13 @@ h.vm.network "private_network", ip: "192.168.135.113"
     h.vm.hostname = "mysql3"
  
     h.vm.provision "shell" do |s|
-    s.path = "mysql3.sh"
+    s.path = "db_init.sh"
     s.privileged = true
   end
-    h.vm.provision "file", source: "mysql3.yml", destination: "/vagrant/mysql3.yml"
+    h.vm.provision "file", source: "slave.yml", destination: "/vagrant/slave.yml"
     h.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"
-    ansible.playbook = "mysql3.yml"
+    ansible.playbook = "slave.yml"
     ansible.compatibility_mode = "2.0"
   end
 
