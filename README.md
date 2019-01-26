@@ -79,3 +79,16 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 | mysql3     |
 +------------+
 ```
+### Verify Orchestrator 
+-- Open below link on web browser 
+```bash
+http://192.168.135.101:3000
+```
+-- Go to Clusters > Discover 
+-- Enter all db nodes under `Enter Host Name` field and then click on submit.
+```bash
+mysql1
+mysql2
+mysql3
+```
+-- Got to Clusters > Dashboard. Now replication between nodes will be visible over dashboard. 
