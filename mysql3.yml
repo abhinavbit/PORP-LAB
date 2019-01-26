@@ -46,3 +46,24 @@
          state: present
          force: yes
 
+     - name: Install dependency
+       apt:
+         name: python2.7-mysqldb
+         state: present
+
+     - name: Configure replication
+       mysql_replication:
+         mode: changemaster
+         master_host: 192.168.135.111
+         master_user: repl
+         master_password: repl
+         master_log_file: mysql1-bin.000001
+         master_log_pos: 4
+
+     - name: Start replication
+       mysql_replication:
+         mode: startslave
+
+     - name: Check slave status
+       mysql_replication:
+         mode: getslave
