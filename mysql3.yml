@@ -51,6 +51,10 @@
          name: python2.7-mysqldb
          state: present
 
+     - name: Stop replication
+       mysql_replication:
+         mode: stopslave
+
      - name: Configure replication
        mysql_replication:
          mode: changemaster
