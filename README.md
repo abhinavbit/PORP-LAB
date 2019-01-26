@@ -92,4 +92,4 @@ mysql2
 mysql3
 ```
 -- Got to Clusters > Dashboard. Now replication between nodes will be visible over dashboard.
-(https://github.com/abhinavbit/PORP-LAB/blob/master/Orchestrator_Dashboard.png) 
+![Orchestrator_Dashboard](https://github.com/abhinavbit/PORP-LAB/blob/master/Orchestrator_Dashboard.png) 
