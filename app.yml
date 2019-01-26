@@ -65,7 +65,7 @@
 
      - name: Install Orchestrator Dependency 
        apt: 
-         name: jq
+         name: ['jq', 'python2.7-mysqldb']
          state: present 
          force: yes 
 
@@ -86,6 +86,19 @@
           - /tmp/orchestrator-client_3.0.14_amd64.deb
           - /tmp/orchestrator-cli_3.0.14_amd64.deb
          
+     - name: Create orchestrator database
+       mysql_db:
+          name: orchestrator
+          state: present
+
+     - name: Create MySQLOrchestratorUser
+       mysql_user:
+         name: orchestrator
+         password: 0rcP@sss
+         host: '%'
+         priv: "*.*:ALL PRIVILEGES"
+         state: present
+
   handlers:
      - name: start mysql
        service:
