@@ -61,6 +61,30 @@
          dest: /tmp/proxysql_init.sql
 
      - shell: mysql -u admin -padmin -h 127.0.0.1 -P6032 < /tmp/proxysql_init.sql
+       ignore_errors: yes
+
+     - name: Install Orchestrator Dependency 
+       apt: 
+         name: jq
+         state: present 
+         force: yes 
+
+     - name: Download Orchestrator Packages 
+       get_url:
+          url: "{{ item.url }}"
+          dest: "{{ item.dest }}"
+       with_items: 
+          - { url: 'https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator_3.0.14_amd64.deb', dest: '/tmp/orchestrator_3.0.14_amd64.deb' }
+          - { url: 'https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator-client_3.0.14_amd64.deb', dest: '/tmp/orchestrator-client_3.0.14_amd64.deb' }
+          - { url: 'https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator-cli_3.0.14_amd64.deb', dest: '/tmp/orchestrator-cli_3.0.14_amd64.deb' } 
+
+     - name: Install Orchestrator Packages 
+       apt:
+          deb: "{{ item }}" 
+       with_items: 
+          - /tmp/orchestrator_3.0.14_amd64.deb
+          - /tmp/orchestrator-client_3.0.14_amd64.deb
+          - /tmp/orchestrator-cli_3.0.14_amd64.deb
          
   handlers:
      - name: start mysql
