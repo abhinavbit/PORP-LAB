@@ -37,6 +37,18 @@
          state: present
          force: yes
 
+     - name: Install dependency 
+       apt:
+         name: python2.7-mysqldb
+         state: present
+
+     - name : Create repl user 
+       mysql_user:
+         name: repl
+         password: repl
+         priv: "*.*:REPLICATION CLIENT,REPLICATION SLAVE"
+         state: present
+
   handlers:
      - name: start mysql
        service:
