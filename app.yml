@@ -173,6 +173,9 @@
            SECRET_KEY: "ssssh"
            BOOLEAN_KEY: "yes"
 
+     - name: Configure pmm-client
+       shell: 'sudo pmm-admin config --server 192.168.135.101; sleep(10); sudo pmm-admin add mysql'
+
   handlers:
      - name: start mysql
        service:

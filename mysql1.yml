@@ -90,3 +90,6 @@
          name: pmm-client
          state: present
          force: yes
+ 
+     - name: Configure pmm-client
+       shell: 'sudo pmm-admin config --server 192.168.135.101; sleep(10); sudo pmm-admin add mysql'
