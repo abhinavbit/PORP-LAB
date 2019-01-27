@@ -139,6 +139,15 @@
        notify:
          - start docker
 
+     - name: pip install docker-py
+       pip:
+         name: docker-py
+         state: present
+
+     - name: pull pmm server docker image
+       docker_image:
+         name: percona/pmm-server:latest
+
   handlers:
      - name: start mysql
        service:
