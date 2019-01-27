@@ -112,6 +112,33 @@
          state: present
          force: yes
 
+     - name: Download Docker GPG Key
+       get_url:
+          url: 'https://download.docker.com/linux/ubuntu/gpg'
+          dest: '/tmp/docker-gpg.key'
+
+     - name: Add Docker GPG Key 
+       apt_key:
+          file: '/tmp/docker-gpg.key'
+          state: present 
+
+     - name: Add Docker repository 
+       apt_repository:
+          repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable'
+          state: present 
+
+     - name: update apt chache
+       apt:
+          update_cache: yes
+
+     - name: Install Docker
+       apt:
+         name: docker-ce
+         state: present
+         force: yes
+       notify:
+         - start docker
+
   handlers:
      - name: start mysql
        service:
@@ -128,5 +155,11 @@
      - name: start orchestrator 
        service:
              name: orchestrator
+             state: restarted
+             enabled: yes
+
+     - name: start docker
+       service:
+             name: docker
              state: restarted
              enabled: yes
