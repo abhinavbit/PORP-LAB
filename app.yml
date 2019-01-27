@@ -148,6 +148,31 @@
        docker_image:
          name: percona/pmm-server:latest
 
+     - name: Create a pmm-data container
+       docker_container:
+         name: pmm-data
+         image: percona/pmm-server:latest
+         state: present 
+         volumes:
+           - /opt/prometheus/data
+           - /opt/consul-data
+           - /var/lib/pmm-mysql-data
+           - /var/lib/grafana
+         command: /bin/true
+
+     - name: Running PMM Data Container without Security ( unprotected )
+       docker_container:
+         name: pmm-server
+         image: percona/pmm-server:latest
+         state: started
+         volumes_from:
+           - pmm-data
+         ports:
+           - "80:80"
+         env: 
+           SECRET_KEY: "ssssh"
+           BOOLEAN_KEY: "yes"
+
   handlers:
      - name: start mysql
        service:
