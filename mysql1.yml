@@ -84,3 +84,9 @@
          host: '%'
          priv: "*.*:SUPER,PROCESS,REPLICATION SLAVE,RELOAD,SELECT"
          state: present
+
+     - name: Install PMM Client
+       apt:
+         name: pmm-client
+         state: present
+         force: yes

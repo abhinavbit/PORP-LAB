@@ -106,6 +106,12 @@
        notify: 
          - start orchestrator 
 
+     - name: Install PMM Client
+       apt:
+         name: pmm-client
+         state: present
+         force: yes
+
   handlers:
      - name: start mysql
        service:

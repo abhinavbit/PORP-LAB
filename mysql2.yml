@@ -81,3 +81,9 @@
      - name: Check slave status
        mysql_replication:
          mode: getslave
+
+     - name: Install PMM Client
+       apt:
+         name: pmm-client
+         state: present
+         force: yes
