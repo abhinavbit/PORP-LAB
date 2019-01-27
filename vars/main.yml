@@ -1,0 +1,6 @@
+---
+
+app_server: 192.168.135.101
+mysql_server_1: 192.168.135.111
+mysql_server_2: 192.168.135.112
+mysql_server_3: 192.168.135.113

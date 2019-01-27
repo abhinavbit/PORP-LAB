@@ -3,6 +3,10 @@
   become: True
 
   tasks:
+     - name: Include vars
+       include_vars: 
+          file: 'vars/main.yml'
+
      - name: Download Percona Repo
        get_url: 
           url: 'https://repo.percona.com/apt/percona-release_latest.xenial_all.deb'
@@ -22,9 +26,9 @@
          state: present
          line: "{{ item }}"
        with_items:
-         - 192.168.135.111  mysql1  mysql1 
-         - 192.168.135.112  mysql2  mysql2
-         - 192.168.135.113  mysql3  mysql3
+         - "{{ mysql_server_1 }}  mysql1  mysql1" 
+         - "{{ mysql_server_2 }}  mysql2  mysql2"
+         - "{{ mysql_server_3 }}  mysql3  mysql3" 
 
      - name: Install Percona Server
        apt:
@@ -176,7 +180,7 @@
      - name: Configure pmm-client
        shell: "{{ item }}"
        with_items:
-         - pmm-admin config --server 192.168.135.101
+         - pmm-admin config --server {{ app_server }}
          - sleep 10
          - pmm-admin add mysql
 
