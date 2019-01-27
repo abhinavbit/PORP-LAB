@@ -92,4 +92,9 @@ mysql2
 mysql3
 ```
 -- Got to Clusters > Dashboard. Now replication between nodes will be visible over dashboard.
-![Orchestrator_Dashboard](https://github.com/abhinavbit/PORP-LAB/blob/master/Orchestrator_Dashboard.png) 
+![Orchestrator_Dashboard](https://github.com/abhinavbit/PORP-LAB/blob/master/Orchestrator_Dashboard.png)
+### Verify PMM 
+-- Open PMM dashbaord link on web browser
+```bash
+http://192.168.135.101:80
+``` 
