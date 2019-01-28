@@ -2,6 +2,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "ubuntu/xenial64"
   config.vm.box_check_update = false
+  $enable_serial_logging = false
 
 #  config.vm.provider "virtualbox" do |vb|
 #     vb.memory = "1024"

@@ -14,7 +14,7 @@ vagrant plugin install vagrant-hostmanager
 ```
 ### Update Vagrant Plugin
 ```bash
-vagrant plugin update vagrant-vbguest
+vagrant plugin update
 ```
 ### Clone the repo
 ```bash
