@@ -199,7 +199,7 @@
      - name: Configure pmm-client
        shell: "{{ item }}"
        with_items:
-         - pmm-admin config --server localhost
+         - pmm-admin config --server "{{ app_server_ip }}"
          - sleep 10
          - pmm-admin add mysql
 
