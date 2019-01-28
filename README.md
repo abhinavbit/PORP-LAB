@@ -12,6 +12,10 @@ Version 2.2.2 or Later
 ```bash
 vagrant plugin install vagrant-hostmanager
 ```
+### Update Vagrant Plugin
+```bash
+vagrant plugin update vagrant-vbguest
+```
 ### Clone the repo
 ```bash
 git clone https://github.com/abhinavbit/PORP-LAB.git
