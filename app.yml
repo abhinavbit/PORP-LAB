@@ -42,8 +42,12 @@
             - "{{ percona_server_server }}"
        environment:
           DEBIAN_FRONTEND: noninteractive
-       notify:
-          - start mysql
+
+     - name: start mysql
+       service:
+             name: mysql
+             state: restarted
+             enabled: yes
 
      - name: Install Percona Toolkit
        apt:
@@ -56,8 +60,12 @@
          name: proxysql
          state: present
          force: yes
-       notify:
-         - start proxysql
+
+     - name: start proxysql
+       service:
+             name: proxysql
+             state: restarted
+             enabled: yes
 
      - name: configure proxysql 
        copy: 
@@ -107,8 +115,12 @@
        template: 
          src: orchestrator.conf.json.j2
          dest: /usr/local/orchestrator/orchestrator.conf.json
-       notify: 
-         - start orchestrator 
+
+     - name: start orchestrator
+       service:
+             name: orchestrator
+             state: restarted
+             enabled: yes
 
      - name: Install PMM Client
        apt:
@@ -140,8 +152,12 @@
          name: docker-ce
          state: present
          force: yes
-       notify:
-         - start docker
+
+     - name: start docker
+       service:
+             name: docker
+             state: restarted
+             enabled: yes
 
      - name: pip install docker-py
        pip:
@@ -187,27 +203,4 @@
          - sleep 10
          - pmm-admin add mysql
 
-  handlers:
-     - name: start mysql
-       service:
-             name: mysql
-             state: restarted
-             enabled: yes
 
-     - name: start proxysql
-       service: 
-             name: proxysql 
-             state: restarted 
-             enabled: yes
-
-     - name: start orchestrator 
-       service:
-             name: orchestrator
-             state: restarted
-             enabled: yes
-
-     - name: start docker
-       service:
-             name: docker
-             state: restarted
-             enabled: yes

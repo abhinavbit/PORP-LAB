@@ -97,4 +97,8 @@ mysql3
 -- Open PMM dashbaord link on web browser
 ```bash
 http://192.168.135.101:80
-``` 
+```
+### NOTES 
+1. If due to any reason like slow ISP, network issues, if create lab `vagrant up --provision` got failed, then just re-run the `vagrant up --provision` command to create lab.
+ 
+2. Once you done with usage of PORP LAB, you can just simply run `vagrant halt` command to power off the nodes and Next time when you need again PORP LAB then just run `vagrant up --provision` to start all lab nodes.  
