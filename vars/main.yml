@@ -1,11 +1,25 @@
 ---
 
-app_server: 192.168.135.101
-mysql_server_1: 192.168.135.111
-mysql_server_2: 192.168.135.112
-mysql_server_3: 192.168.135.113
+app_server_ip: 192.168.135.101
+mysql_server_1_ip: 192.168.135.111
+mysql_server_2_ip: 192.168.135.112
+mysql_server_3_ip: 192.168.135.113
+mysql_server_1_hostname: mysql1
+mysql_server_2_hostname: mysql2
+mysql_server_3_hostname: mysql3
 
-percona_repo: https://repo.percona.com/apt/percona-release_latest.xenial_all.deb
+percona_repo_url: https://repo.percona.com/apt/percona-release_latest.xenial_all.deb
+percona_repo_dest: /tmp/percona-release_latest.xenial_all.deb
 percona_server_common: percona-server-common-5.7
 percona_server_client: percona-server-client-5.7
 percona_server_server: percona-server-server-5.7
+
+orchestrator_url: https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator_3.0.14_amd64.deb
+orchestrator_dest: /tmp/orchestrator_3.0.14_amd64.deb
+orchestrator_client_url: https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator-client_3.0.14_amd64.deb
+orchestrator_client_dest: /tmp/orchestrator-client_3.0.14_amd64.deb
+orchestrator_cli_url: https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator-cli_3.0.14_amd64.deb
+orchestrator_cli_dest: /tmp/orchestrator-cli_3.0.14_amd64.deb
+
+
+

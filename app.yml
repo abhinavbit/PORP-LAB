@@ -9,12 +9,12 @@
 
      - name: Download Percona Repo
        get_url: 
-          url: "{{ percona_repo }}"
-          dest: '/tmp/percona-release_latest.xenial_all.deb'
+          url: "{{ percona_repo_url }}"
+          dest: "{{ percona_repo_dest }}"
 
      - name: Install Percona Repo
        apt:
-          deb: '/tmp/percona-release_latest.xenial_all.deb'
+          deb: "{{ percona_repo_dest }}"
 
      - name: update apt chache
        apt:   
@@ -26,9 +26,9 @@
          state: present
          line: "{{ item }}"
        with_items:
-         - "{{ mysql_server_1 }}  mysql1  mysql1" 
-         - "{{ mysql_server_2 }}  mysql2  mysql2"
-         - "{{ mysql_server_3 }}  mysql3  mysql3" 
+         - "{{ mysql_server_1_ip }}  {{ mysql_server_1_hostname }} {{ mysql_server_1_hostname }}" 
+         - "{{ mysql_server_2_ip }}  {{ mysql_server_2_hostname }} {{ mysql_server_2_hostname }}"
+         - "{{ mysql_server_3_ip }}  {{ mysql_server_3_hostname }} {{ mysql_server_3_hostname }}" 
 
      - name: Install Percona Server
        apt:
@@ -78,17 +78,17 @@
           url: "{{ item.url }}"
           dest: "{{ item.dest }}"
        with_items: 
-          - { url: 'https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator_3.0.14_amd64.deb', dest: '/tmp/orchestrator_3.0.14_amd64.deb' }
-          - { url: 'https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator-client_3.0.14_amd64.deb', dest: '/tmp/orchestrator-client_3.0.14_amd64.deb' }
-          - { url: 'https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator-cli_3.0.14_amd64.deb', dest: '/tmp/orchestrator-cli_3.0.14_amd64.deb' } 
+          - { url: "{{ orchestrator_url }}", dest: "{{ orchestrator_dest }}" }
+          - { url: "{{ orchestrator_client_url }}", dest: "{{ orchestrator_client_dest }}" }
+          - { url: "{{ orchestrator_cli_url }}", dest: "{{ orchestrator_cli_dest }}" } 
 
      - name: Install Orchestrator Packages 
        apt:
           deb: "{{ item }}" 
        with_items: 
-          - /tmp/orchestrator_3.0.14_amd64.deb
-          - /tmp/orchestrator-client_3.0.14_amd64.deb
-          - /tmp/orchestrator-cli_3.0.14_amd64.deb
+          - "{{ orchestrator_dest }}"
+          - "{{ orchestrator_client_dest }}"
+          - "{{ orchestrator_cli_dest }}"
          
      - name: Create orchestrator database
        mysql_db:
@@ -183,7 +183,7 @@
      - name: Configure pmm-client
        shell: "{{ item }}"
        with_items:
-         - pmm-admin config --server {{ app_server }}
+         - pmm-admin config --server {{ app_server_ip }}
          - sleep 10
          - pmm-admin add mysql
 
