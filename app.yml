@@ -183,7 +183,7 @@
            - /var/lib/grafana
          command: /bin/true
 
-     - name: Running PMM Data Container without Security ( unprotected )
+     - name: Running PMM Data Container
        docker_container:
          name: pmm-server
          image: percona/pmm-server:latest
@@ -196,6 +196,12 @@
            SECRET_KEY: "ssssh"
            BOOLEAN_KEY: "yes"
 
- 
+     - name: Configure pmm-client
+       shell: "{{ item }}"
+       with_items:
+         - pmm-admin config --server 192.168.135.101
+         - sleep 10
+         - pmm-admin add mysql
+       ignore_errors: yes  
 
 
