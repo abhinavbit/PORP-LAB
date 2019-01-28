@@ -9,7 +9,7 @@
 
      - name: Download Percona Repo
        get_url: 
-          url: 'https://repo.percona.com/apt/percona-release_latest.xenial_all.deb'
+          url: "{{ percona_repo }}"
           dest: '/tmp/percona-release_latest.xenial_all.deb'
 
      - name: Install Percona Repo
@@ -151,6 +151,9 @@
      - name: pull pmm server docker image
        docker_image:
          name: percona/pmm-server:latest
+         pull: yes
+         state: present 
+         debug: true
 
      - name: Create a pmm-data container
        docker_container:

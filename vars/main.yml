@@ -5,6 +5,7 @@ mysql_server_1: 192.168.135.111
 mysql_server_2: 192.168.135.112
 mysql_server_3: 192.168.135.113
 
+percona_repo: https://repo.percona.com/apt/percona-release_latest.xenial_all.deb
 percona_server_common: percona-server-common-5.7
 percona_server_client: percona-server-client-5.7
 percona_server_server: percona-server-server-5.7
