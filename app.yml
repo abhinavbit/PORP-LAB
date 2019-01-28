@@ -196,12 +196,13 @@
            SECRET_KEY: "ssssh"
            BOOLEAN_KEY: "yes"
 
-#     - name: Configure pmm-client
-#       shell: "{{ item }}"
-#       sudo: yes
-#       with_items:
-#         - pmm-admin config --server {{ app_server_ip }}:80
-#         - sleep 10
-#         - pmm-admin add mysql
+     - name: Configure pmm-client
+       shell: "{{ item }}"
+       sudo: yes
+       with_items:
+         - pmm-admin config --server {{ app_server_ip }}
+         - sleep 10
+         - pmm-admin add mysql
+       ignore_errors: yes 
 
 
