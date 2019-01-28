@@ -196,14 +196,6 @@
            SECRET_KEY: "ssssh"
            BOOLEAN_KEY: "yes"
 
-     - name: configure pmm-client
-       copy:
-         src: init/pmm_init.sh
-         dest: /tmp/pmm_init.sh
-         mode: 0744
-
-     - shell: /tmp/pmm_init.sh
-       ignore_errors: yes
  
 
 
