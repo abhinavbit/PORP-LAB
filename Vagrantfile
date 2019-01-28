@@ -14,8 +14,8 @@ h.vm.network "private_network", ip: "192.168.135.101"
   end
 
     h.vm.provider "virtualbox" do |vb|
-     vb.memory = "1024"
-     vb.cpus = 1
+     vb.memory = "2048"
+     vb.cpus = 2
     end
 
     h.vm.provision "file", source: "app.yml", destination: "/vagrant/app.yml"
