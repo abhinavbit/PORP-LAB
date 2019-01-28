@@ -4,12 +4,6 @@ Vagrant.configure(2) do |config|
   config.vm.box_check_update = false
   $enable_serial_logging = false
 
-#  config.vm.provider "virtualbox" do |vb|
-#     vb.memory = "1024"
-#     vb.cpus = 1
-#     vb.linked_clone = true
-#    end
-
   config.vm.define "app" do |h|
 h.vm.network "private_network", ip: "192.168.135.101"
     h.vm.hostname = "app"
