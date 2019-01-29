@@ -1,4 +1,23 @@
 # PORP LAB : ProxySQL/Orchestrator/Replication/PMM
+### Summary
+PORP Lab will create 4 different nodes. Each node will have below packages/applications/db installed. 
+```bash
+app
+-- Percona Server 5.7
+-- Percona Toolkit 
+-- Percona XtraBackup 
+-- Sysbench 
+-- ProxySQL
+-- Orchestrator 
+-- PMM
+
+mysql1 / mysql2 / mysql3
+-- Percona Server 5.7
+-- Percona Toolkit
+-- pmm-client
+-- Replication
+```
+PORP LAB have ProxySQL,Orchestrator and PMM properly configured, we can just create this lab and use it. 
 
 ### Install VirtualBox
 ```bash
