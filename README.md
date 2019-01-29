@@ -124,4 +124,15 @@ http://192.168.135.101:80
 ### NOTES 
 1. If due to any reason like slow ISP, network issues, if create lab `vagrant up --provision` got failed, then just re-run the `vagrant up --provision` command to create lab.
  
-2. Once you done with usage of PORP LAB, you can just simply run `vagrant halt` command to power off the nodes and Next time when you need again PORP LAB then just run `vagrant up --provision` to start all lab nodes.  
+2. Once you done with usage of PORP LAB, you can just simply run `vagrant halt` command to power off the nodes and Next time when you need again PORP LAB then just run `vagrant up --provision` to start all lab nodes.
+
+3. Error :-
+```bash
+Progress state: NS_ERROR_FAILURE
+VBoxManage: error: Failed to create the host-only adapter
+VBoxManage: error: VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory
+VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component HostNetworkInterfaceWrap, interface IHostNetworkInterface
+VBoxManage: error: Context: "RTEXITCODE handleCreate(HandlerArg *)" at line 94 of file VBoxManageHostonly.cpp
+```
+-- Grant permission to VirtualBox under System Preferences > Security & Privacy > General (this request is new to macOS High Sierra)
+-- Open Terminal and run: sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart  
