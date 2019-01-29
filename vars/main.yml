@@ -32,3 +32,11 @@ DockerRepository: deb [arch=amd64] https://download.docker.com/linux/ubuntu xeni
 PMMDockerImage: percona/pmm-server:latest
 PMMDockerPort: 80:80
 
+ReplicationUser: repl
+ReplicationPassword: repl
+
+ProxySQLUser: proxysql
+ProxySQLPassword: proxysql
+
+OrcMySQLTopologyUser: orchestrator
+OrcMySQLTopologyPassword: 0rcTopology

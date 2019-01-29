@@ -3,14 +3,18 @@
   become: True
 
   tasks:
+     - name: Include vars
+       include_vars: 
+          file: 'vars/main.yml'
+
      - name: Download Percona Repo
        get_url: 
-          url: 'https://repo.percona.com/apt/percona-release_latest.xenial_all.deb'
-          dest: '/tmp/percona-release_latest.xenial_all.deb'
+          url: "{{ percona_repo_url }}"
+          dest: "{{ percona_repo_dest }}"
 
      - name: Install Percona Repo
        apt:
-          deb: '/tmp/percona-release_latest.xenial_all.deb'
+          deb: "{{ percona_repo_dest }}"
 
      - name: update apt chache
        apt:   
@@ -22,9 +26,9 @@
          state: present
          line: "{{ item }}"
        with_items:
-         - 192.168.135.111  mysql1  mysql1
-         - 192.168.135.112  mysql2  mysql2
-         - 192.168.135.113  mysql3  mysql3
+         - "{{ mysql_server_1_ip }}  {{ mysql_server_1_hostname }} {{ mysql_server_1_hostname }}" 
+         - "{{ mysql_server_2_ip }}  {{ mysql_server_2_hostname }} {{ mysql_server_2_hostname }}"
+         - "{{ mysql_server_3_ip }}  {{ mysql_server_3_hostname }} {{ mysql_server_3_hostname }}"
 
      - name: Install Percona Server
        apt:
@@ -33,9 +37,9 @@
          force: yes 
        vars:
          item:
-            - percona-server-common-5.7
-            - percona-server-client-5.7
-            - percona-server-server-5.7
+            - "{{ percona_server_common }}"
+            - "{{ percona_server_client }}"
+            - "{{ percona_server_server }}"       
        environment:
           DEBIAN_FRONTEND: noninteractive
 
@@ -63,24 +67,24 @@
 
      - name : Create repl user 
        mysql_user:
-         name: repl
-         password: repl
+         name: "{{ ReplicationUser }}"
+         password: "{{ ReplicationPassword }}"
          host: '%'
          priv: "*.*:REPLICATION CLIENT,REPLICATION SLAVE"
          state: present
 
      - name : Create proxysql user
        mysql_user:
-         name: proxysql
-         password: proxysql
+         name: "{{ ProxySQLUser }}"
+         password: "{{ ProxySQLPassword }}"
          host: '%'
          priv: "*.*:ALL PRIVILEGES"
          state: present
 
      - name : Create orchestrator MySQLTopologyUser
        mysql_user:
-         name: orchestrator
-         password: 0rcTopology
+         name: "{{ OrcMySQLTopologyUser }}"
+         password: "{{ OrcMySQLTopologyPassword }}"
          host: '%'
          priv: "*.*:SUPER,PROCESS,REPLICATION SLAVE,RELOAD,SELECT"
          state: present
@@ -94,6 +98,6 @@
      - name: Configure pmm-client
        shell: "{{ item }}"
        with_items:
-         - pmm-admin config --server 192.168.135.101
+         - pmm-admin config --server {{ app_server_ip }}
          - sleep 10
          - pmm-admin add mysql 
