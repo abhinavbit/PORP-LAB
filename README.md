@@ -134,5 +134,5 @@ VBoxManage: error: VBoxNetAdpCtl: Error while adding new interface: failed to op
 VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component HostNetworkInterfaceWrap, interface IHostNetworkInterface
 VBoxManage: error: Context: "RTEXITCODE handleCreate(HandlerArg *)" at line 94 of file VBoxManageHostonly.cpp
 ```
--- Grant permission to VirtualBox under System Preferences > Security & Privacy > General (this request is new to macOS High Sierra)
--- Open Terminal and run: sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart  
+-- Grant permission to VirtualBox under `System Preferences > Security & Privacy > General` (this request is new to macOS High Sierra). \n
+-- Open Terminal and run: sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart.  
