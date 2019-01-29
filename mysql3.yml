@@ -9,12 +9,12 @@
 
      - name: Download Percona Repo
        get_url: 
-          url: 'https://repo.percona.com/apt/percona-release_latest.xenial_all.deb'
-          dest: '/tmp/percona-release_latest.xenial_all.deb'
+          url: "{{ percona_repo_url }}"
+          dest: "{{ percona_repo_dest }}"
 
      - name: Install Percona Repo
        apt:
-          deb: '/tmp/percona-release_latest.xenial_all.deb'
+          deb: "{{ percona_repo_dest }}"
 
      - name: update apt chache
        apt:   
@@ -26,9 +26,9 @@
          state: present
          line: "{{ item }}"
        with_items:
-         - 192.168.135.111  mysql1  mysql1
-         - 192.168.135.112  mysql2  mysql2
-         - 192.168.135.113  mysql3  mysql3
+         - "{{ mysql_server_1_ip }}  {{ mysql_server_1_hostname }} {{ mysql_server_1_hostname }}" 
+         - "{{ mysql_server_2_ip }}  {{ mysql_server_2_hostname }} {{ mysql_server_2_hostname }}"
+         - "{{ mysql_server_3_ip }}  {{ mysql_server_3_hostname }} {{ mysql_server_3_hostname }}"
 
      - name: Install Percona Server
        apt:
@@ -37,9 +37,9 @@
          force: yes 
        vars:
          item:
-            - percona-server-common-5.7
-            - percona-server-client-5.7
-            - percona-server-server-5.7
+            - "{{ percona_server_common }}"
+            - "{{ percona_server_client }}"
+            - "{{ percona_server_server }}"
        environment:
           DEBIAN_FRONTEND: noninteractive
 
@@ -72,9 +72,9 @@
      - name: Configure replication
        mysql_replication:
          mode: changemaster
-         master_host: 192.168.135.111
-         master_user: repl
-         master_password: repl
+         master_host: "{{ mysql_server_1_ip }}"
+         master_user: "{{ ReplicationUser }}"
+         master_password: "{{ ReplicationPassword }}"
          master_log_file: mysql1-bin.000001
          master_log_pos: 4
 
@@ -95,6 +95,6 @@
      - name: Configure pmm-client
        shell: "{{ item }}"
        with_items:
-         - pmm-admin config --server 192.168.135.101
+         - pmm-admin config --server {{ app_server_ip }}
          - sleep 10
          - pmm-admin add mysql

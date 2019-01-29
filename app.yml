@@ -55,6 +55,18 @@
          state: present
          force: yes
 
+     - name: Install Percona XtraBackup
+       apt:
+         name: percona-xtrabackup
+         state: present
+         force: yes
+
+     - name: Install Sysbench
+       apt:
+         name: sysbench
+         state: present
+         force: yes
+
      - name: Install ProxySQL 
        apt: 
          name: proxysql
