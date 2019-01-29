@@ -105,8 +105,8 @@
 
      - name: Create MySQLOrchestratorUser
        mysql_user:
-         name: orchestrator
-         password: 0rcP@sss
+         name: "{{ MySQLOrchestratorUser }}"
+         password: "{{ MySQLOrchestratorPassword }}"
          host: '%'
          priv: "*.*:ALL PRIVILEGES"
          state: present
@@ -130,17 +130,17 @@
 
      - name: Download Docker GPG Key
        get_url:
-          url: 'https://download.docker.com/linux/ubuntu/gpg'
-          dest: '/tmp/docker-gpg.key'
+          url: "{{ DockerGPGKeyurl }}"
+          dest: "{{ DockerGPGKeyDest }}"
 
      - name: Add Docker GPG Key 
        apt_key:
-          file: '/tmp/docker-gpg.key'
+          file: "{{ DockerGPGKeyDest }}"
           state: present 
 
      - name: Add Docker repository 
        apt_repository:
-          repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable'
+          repo: "{{ DockerRepository }}"
           state: present 
 
      - name: update apt chache
@@ -166,7 +166,7 @@
 
      - name: pull pmm server docker image
        docker_image:
-         name: percona/pmm-server:latest
+         name: "{{ PMMDockerImage }}"
          pull: yes
          state: present 
          debug: true
@@ -174,7 +174,7 @@
      - name: Create a pmm-data container
        docker_container:
          name: pmm-data
-         image: percona/pmm-server:latest
+         image: "{{ PMMDockerImage }}"
          state: present 
          volumes:
            - /opt/prometheus/data
@@ -186,12 +186,12 @@
      - name: Running PMM Data Container
        docker_container:
          name: pmm-server
-         image: percona/pmm-server:latest
+         image: "{{ PMMDockerImage }}"
          state: started
          volumes_from:
            - pmm-data
          ports:
-           - "80:80"
+           - "{{ PMMDockerPort }}"
          env: 
            SECRET_KEY: "ssssh"
            BOOLEAN_KEY: "yes"

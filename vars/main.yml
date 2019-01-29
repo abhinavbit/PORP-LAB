@@ -21,5 +21,14 @@ orchestrator_client_dest: /tmp/orchestrator-client_3.0.14_amd64.deb
 orchestrator_cli_url: https://github.com/github/orchestrator/releases/download/v3.0.14/orchestrator-cli_3.0.14_amd64.deb
 orchestrator_cli_dest: /tmp/orchestrator-cli_3.0.14_amd64.deb
 
+MySQLOrchestratorUser: orchestrator
+MySQLOrchestratorPassword: 0rcP@sss
 
+DockerGPGKeyurl: https://download.docker.com/linux/ubuntu/gpg
+DockerGPGKeyDest: /tmp/docker-gpg.key
+
+DockerRepository: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+
+PMMDockerImage: percona/pmm-server:latest
+PMMDockerPort: 80:80
 
