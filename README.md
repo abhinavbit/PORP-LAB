@@ -1,5 +1,5 @@
 # PORP LAB : ProxySQL/Orchestrator/Replication/PMM
-### Summary
+### Summar
 PORP Lab will create 4 different nodes. Each node will have below packages/applications/db installed. 
 ```bash
 app
